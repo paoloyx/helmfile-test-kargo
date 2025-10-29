@@ -2,9 +2,12 @@ environments:
   dev:
     values:
       - defaults.yaml
+      - environments/dev/values.yaml
   uat:
     values:
       - defaults.yaml
+      - environments/uat/values.yaml
   prod:
     values:
       - defaults.yaml
+      - environments/prod/values.yaml
