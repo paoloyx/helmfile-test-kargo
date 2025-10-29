@@ -1,2 +1,3 @@
 openTelemetryOperator:
   fullnameOverride: "otel-operator-dev"
+  version: "0.98.0"
