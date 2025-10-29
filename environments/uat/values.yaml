@@ -1,2 +1,0 @@
-openTelemetryOperator:
-  fullnameOverride: "otel-operator-uat"
