@@ -1,0 +1,22 @@
+replicaCount: {{ .Values.openTelemetryOperator.replicas }}
+fullnameOverride: {{ .Values.openTelemetryOperator.name }}
+pdb:
+  create: true
+manager:
+{{ toYaml .Values.openTelemetryOperator.manager | nindent 2 }}
+
+{{- if .Values.openTelemetryOperator.kubeRBACProxy.resources }}
+kubeRBACProxy:
+{{ toYaml .Values.openTelemetryOperator.kubeRBACProxy | nindent 2 }}
+{{- end }}
+
+affinity:
+  podAntiAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+    - labelSelector:
+        matchExpressions:
+        - key : app.kubernetes.io/name
+          operator : In
+          values:
+          - opentelemetry-operator
+      topologyKey : "topology.kubernetes.io/zone"

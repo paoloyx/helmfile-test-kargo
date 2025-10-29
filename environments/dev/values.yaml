@@ -1,0 +1,2 @@
+openTelemetryOperator:
+  fullnameOverride: "otel-operator-dev"

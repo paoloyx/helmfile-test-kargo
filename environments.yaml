@@ -1,0 +1,10 @@
+environments:
+  dev:
+    values:
+      - defaults.yaml
+  uat:
+    values:
+      - defaults.yaml
+  prod:
+    values:
+      - defaults.yaml

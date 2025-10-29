@@ -1,0 +1,3 @@
+openTelemetryOperator:
+  installed: true
+  version: "0.97.0"

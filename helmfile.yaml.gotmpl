@@ -1,0 +1,15 @@
+bases:
+ - environments.yaml
+---
+
+releases:
+{{- if .Values.openTelemetryOperator.installed}}
+- name: opentelemetry-operator
+  namespace: opentelemetry-operator
+  chart: tagetik/opentelemetry-operator
+  disableValidationOnInstall: true
+  version: {{ .Values.openTelemetryOperator.version }}
+  installed: {{ .Values.openTelemetryOperator.installed }}
+  values:
+  - templates/opentelemetry-operator.yaml.gotmpl
+{{- end }}
