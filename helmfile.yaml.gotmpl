@@ -2,6 +2,10 @@ bases:
  - environments.yaml
 ---
 
+repositories:
+- name: open-telemetry
+  url: https://open-telemetry.github.io/opentelemetry-helm-charts
+
 releases:
 {{- if .Values.openTelemetryOperator.installed}}
 - name: opentelemetry-operator
