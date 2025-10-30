@@ -1,5 +1,5 @@
 {
-  "repoURL": "https://github.com/paoloyx/helmfile-test-kargo",
-  "drySha": "60295ef076b88dd23dab97c7efe99ed6c589d0b2",
+  "repoURL": "https://github.com/paoloyx/helmfile-test-kargo.git",
+  "drySha": "4b5f9300d37177beaff7a7f38028b5774593cf4c",
   "commands": null
 }
