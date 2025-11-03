@@ -1,0 +1,113 @@
+name: Auto Tag on Dev-Next Push
+
+on:
+  push:
+    branches:
+      - environments/dev-next
+
+jobs:
+  create-tag:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get latest tag
+        id: get_latest_tag
+        run: |
+          # Ottieni l'ultimo tag che segue il pattern semver
+          LATEST_TAG=$(git tag -l --sort=-version:refname | grep -E '^v?[0-9]+\.[0-9]+\.[0-9]+$' | head -n1)
+
+          if [ -z "$LATEST_TAG" ]; then
+            # Se non ci sono tag, inizia da v0.1.0
+            echo "latest_tag=v0.0.0" >> $GITHUB_OUTPUT
+            echo "No existing tags found, starting from v0.0.0"
+          else
+            echo "latest_tag=$LATEST_TAG" >> $GITHUB_OUTPUT
+            echo "Latest tag found: $LATEST_TAG"
+          fi
+
+      - name: Calculate new version
+        id: calculate_version
+        run: |
+          LATEST_TAG="${{ steps.get_latest_tag.outputs.latest_tag }}"
+
+          # Rimuovi il prefisso 'v' se presente
+          VERSION=${LATEST_TAG#v}
+
+          # Estrai major, minor, patch
+          IFS='.' read -r MAJOR MINOR PATCH <<< "$VERSION"
+
+          # Incrementa la versione minor e resetta patch a 0
+          NEW_MINOR=$((MINOR + 1))
+          NEW_VERSION="v${MAJOR}.${NEW_MINOR}.0"
+
+          echo "new_version=$NEW_VERSION" >> $GITHUB_OUTPUT
+          echo "New version will be: $NEW_VERSION"
+
+      - name: Create and push tag
+        run: |
+          NEW_VERSION="${{ steps.calculate_version.outputs.new_version }}"
+
+          # Crea il tag
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git tag -a "$NEW_VERSION" -m "Auto-generated tag $NEW_VERSION from environments/dev-next push"
+          git push origin "$NEW_VERSION"
+
+          echo "✅ Created and pushed tag: $NEW_VERSION"
+
+      - name: Merge to target branch
+        run: |
+          NEW_VERSION="${{ steps.calculate_version.outputs.new_version }}"
+          TARGET_BRANCH="environments/prod"  # Cambia questo con il tuo branch di destinazione
+          
+          # Verifica se il branch target esiste
+          if git show-ref --verify --quiet refs/remotes/origin/$TARGET_BRANCH; then
+            echo "✅ Target branch $TARGET_BRANCH exists"
+            
+            # Checkout del branch target
+            git checkout $TARGET_BRANCH
+            git pull origin $TARGET_BRANCH
+            
+            # Merge del tag nel branch target
+            git merge $NEW_VERSION --no-ff -m "Merge tag $NEW_VERSION into $TARGET_BRANCH"
+            
+            # Push delle modifiche
+            git push origin $TARGET_BRANCH
+            
+            echo "✅ Successfully merged tag $NEW_VERSION into $TARGET_BRANCH"
+          else
+            echo "❌ Target branch $TARGET_BRANCH does not exist"
+            echo "Available branches:"
+            git branch -r
+            exit 1
+          fi
+
+      - name: Create GitHub Release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ steps.calculate_version.outputs.new_version }}
+          release_name: Release ${{ steps.calculate_version.outputs.new_version }}
+          body: |
+            🚀 **Auto-generated release from environments/dev-next**
+            
+            This release was automatically created from a push to the `environments/dev-next` branch.
+            
+            **Changes:**
+            - Minor version increment
+            - Commit: ${{ github.sha }}
+            - **Merged into:** environments/prod
+            
+            **Branch:** environments/dev-next
+            **Triggered by:** @${{ github.actor }}
+          draft: false
+          prerelease: false
