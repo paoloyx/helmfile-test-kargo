@@ -7,5 +7,5 @@ To hydrate the manifests in this repository, run the following commands:
 
 git clone https://github.com/paoloyx/helmfile-test-kargo
 # cd into the cloned directory
-git checkout d7069dd6df61f8189bcf722a9b869d18f236e560
+git checkout 0186ecfa5c65084fbe9e70c6aab0379ed5e4da79
 ```
