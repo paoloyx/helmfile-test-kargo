@@ -13,7 +13,7 @@ releases:
   chart: ./charts/opentelemetry-operator-resources
   disableValidationOnInstall: true
   values:
-  - templates/opentelemetry-operator.yaml.gotmpl
+  - templates/opentelemetry-operator-namespace.yaml.gotmpl
 - name: opentelemetry-operator
   namespace: opentelemetry-operator-{{`{{ .Environment.Name }}`}}
   createNamespace: true
