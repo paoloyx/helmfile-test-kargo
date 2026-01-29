@@ -1,4 +1,5 @@
 openTelemetryOperator:
   fullnameOverride: "otel-operator-prod-2-la-vendetta"
+  replicas: 4
 namespace:
   name: opentelemetry-operator-prod
