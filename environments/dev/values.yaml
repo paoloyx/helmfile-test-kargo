@@ -1,6 +1,6 @@
 openTelemetryOperator:
   fullnameOverride: "otel-operator-paolo"
   version: "0.98.0"
-  replicas: 3
+  replicas: 2
 namespace:
   name: opentelemetry-operator-dev
