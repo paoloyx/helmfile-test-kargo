@@ -8,12 +8,21 @@ repositories:
 
 releases:
 {{- if .Values.openTelemetryOperator.installed}}
+- name: opentelemetry-operator-namespace
+  namespace: default
+  chart: ./charts/opentelemetry-operator-resources
+  disableValidationOnInstall: true
+  values:
+  - templates/opentelemetry-operator.yaml.gotmpl
 - name: opentelemetry-operator
-  namespace: opentelemetry-operator
+  namespace: opentelemetry-operator-{{`{{ .Environment.Name }}`}}
+  createNamespace: true
   chart: open-telemetry/opentelemetry-operator
   disableValidationOnInstall: true
   version: {{ .Values.openTelemetryOperator.version }}
   installed: {{ .Values.openTelemetryOperator.installed }}
   values:
   - templates/opentelemetry-operator.yaml.gotmpl
+  needs:
+  - default/opentelemetry-operator-namespace
 {{- end }}

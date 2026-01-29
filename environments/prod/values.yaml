@@ -1,2 +1,4 @@
 openTelemetryOperator:
   fullnameOverride: "otel-operator-prod"
+namespace:
+  name: opentelemetry-operator-prod
