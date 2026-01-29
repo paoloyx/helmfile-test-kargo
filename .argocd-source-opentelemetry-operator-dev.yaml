@@ -1,0 +1,5 @@
+plugin:
+  name: application-helmfile-plugin-config
+  env:
+    - name: CLUSTER_NAME
+      value: dev
