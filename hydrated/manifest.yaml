@@ -17206,7 +17206,7 @@ metadata:
   name: opentelemetry-operator
   namespace: opentelemetry-operator-dev
 spec:
-  replicas: 3
+  replicas: 2
   revisionHistoryLimit: 10
   selector:
     matchLabels:

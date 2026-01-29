@@ -1,7 +1,7 @@
 {
   "repoURL": "https://github.com/paoloyx/helmfile-test-kargo",
-  "drySha": "a4df67f0c08c094276979559e62c430011d6dff9",
+  "drySha": "cb3b1ba2458803598979b2869a9c90522ec7d197",
   "author": "Paolo Filippelli <paolo.filippelli@wolterskluwer.com>",
-  "date": "2026-01-29T14:20:30Z",
-  "subject": "Fix namespace creation"
+  "date": "2026-01-29T15:36:03Z",
+  "subject": "ammazzato"
 }
