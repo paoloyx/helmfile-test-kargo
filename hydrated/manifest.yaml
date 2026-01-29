@@ -2,8 +2,8 @@ apiVersion: v1
 kind: Namespace
 metadata:
   labels:
-    kubernetes.io/metadata.name: opentelemetry-operator-dev
-  name: opentelemetry-operator-dev
+    kubernetes.io/metadata.name: opentelemetry-operator-uat
+  name: opentelemetry-operator-uat
 ---
 apiVersion: v1
 automountServiceAccountToken: true
@@ -15,10 +15,10 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: opentelemetry-operator
     app.kubernetes.io/part-of: opentelemetry-operator
-    app.kubernetes.io/version: 0.137.0
-    helm.sh/chart: opentelemetry-operator-0.98.0
+    app.kubernetes.io/version: 0.136.0
+    helm.sh/chart: opentelemetry-operator-0.97.0
   name: opentelemetry-operator
-  namespace: opentelemetry-operator-dev
+  namespace: opentelemetry-operator-uat
 ---
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
@@ -2970,8 +2970,6 @@ spec:
                   default: 30s
                   format: duration
                   type: string
-                dnsPolicy:
-                  type: string
                 env:
                   items:
                     properties:
@@ -5227,7 +5225,7 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
-    cert-manager.io/inject-ca-from: opentelemetry-operator-dev/opentelemetry-operator-serving-cert
+    cert-manager.io/inject-ca-from: opentelemetry-operator-uat/opentelemetry-operator-serving-cert
     controller-gen.kubebuilder.io/version: v0.19.0
   creationTimestamp: null
   labels:
@@ -5240,7 +5238,7 @@ spec:
       clientConfig:
         service:
           name: opentelemetry-operator-webhook
-          namespace: opentelemetry-operator-dev
+          namespace: opentelemetry-operator-uat
           path: /convert
           port: 443
       conversionReviewVersions:
@@ -11199,8 +11197,6 @@ spec:
                     type:
                       type: string
                   type: object
-                dnsPolicy:
-                  type: string
                 env:
                   items:
                     properties:
@@ -12501,27 +12497,6 @@ spec:
                   type: string
                 shareProcessNamespace:
                   type: boolean
-                startupProbe:
-                  properties:
-                    failureThreshold:
-                      format: int32
-                      type: integer
-                    initialDelaySeconds:
-                      format: int32
-                      type: integer
-                    periodSeconds:
-                      format: int32
-                      type: integer
-                    successThreshold:
-                      format: int32
-                      type: integer
-                    terminationGracePeriodSeconds:
-                      format: int64
-                      type: integer
-                    timeoutSeconds:
-                      format: int32
-                      type: integer
-                  type: object
                 targetAllocator:
                   properties:
                     affinity:
@@ -16500,8 +16475,8 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: opentelemetry-operator
     app.kubernetes.io/part-of: opentelemetry-operator
-    app.kubernetes.io/version: 0.137.0
-    helm.sh/chart: opentelemetry-operator-0.98.0
+    app.kubernetes.io/version: 0.136.0
+    helm.sh/chart: opentelemetry-operator-0.97.0
   name: opentelemetry-operator-manager
 rules:
   - apiGroups:
@@ -16853,8 +16828,8 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: opentelemetry-operator
     app.kubernetes.io/part-of: opentelemetry-operator
-    app.kubernetes.io/version: 0.137.0
-    helm.sh/chart: opentelemetry-operator-0.98.0
+    app.kubernetes.io/version: 0.136.0
+    helm.sh/chart: opentelemetry-operator-0.97.0
   name: opentelemetry-operator-metrics
 rules:
   - nonResourceURLs:
@@ -16871,8 +16846,8 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: opentelemetry-operator
     app.kubernetes.io/part-of: opentelemetry-operator
-    app.kubernetes.io/version: 0.137.0
-    helm.sh/chart: opentelemetry-operator-0.98.0
+    app.kubernetes.io/version: 0.136.0
+    helm.sh/chart: opentelemetry-operator-0.97.0
   name: opentelemetry-operator-proxy
 rules:
   - apiGroups:
@@ -16891,8 +16866,8 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: opentelemetry-operator
     app.kubernetes.io/part-of: opentelemetry-operator
-    app.kubernetes.io/version: 0.137.0
-    helm.sh/chart: opentelemetry-operator-0.98.0
+    app.kubernetes.io/version: 0.136.0
+    helm.sh/chart: opentelemetry-operator-0.97.0
   name: opentelemetry-operator-manager
 roleRef:
   apiGroup: rbac.authorization.k8s.io
@@ -16901,7 +16876,7 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: opentelemetry-operator
-    namespace: opentelemetry-operator-dev
+    namespace: opentelemetry-operator-uat
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
@@ -16912,8 +16887,8 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: opentelemetry-operator
     app.kubernetes.io/part-of: opentelemetry-operator
-    app.kubernetes.io/version: 0.137.0
-    helm.sh/chart: opentelemetry-operator-0.98.0
+    app.kubernetes.io/version: 0.136.0
+    helm.sh/chart: opentelemetry-operator-0.97.0
   name: opentelemetry-operator-proxy
 roleRef:
   apiGroup: rbac.authorization.k8s.io
@@ -16922,7 +16897,7 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: opentelemetry-operator
-    namespace: opentelemetry-operator-dev
+    namespace: opentelemetry-operator-uat
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
@@ -16933,10 +16908,10 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: opentelemetry-operator
     app.kubernetes.io/part-of: opentelemetry-operator
-    app.kubernetes.io/version: 0.137.0
-    helm.sh/chart: opentelemetry-operator-0.98.0
+    app.kubernetes.io/version: 0.136.0
+    helm.sh/chart: opentelemetry-operator-0.97.0
   name: opentelemetry-operator-leader-election
-  namespace: opentelemetry-operator-dev
+  namespace: opentelemetry-operator-uat
 rules:
   - apiGroups:
       - ""
@@ -17130,10 +17105,10 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: opentelemetry-operator
     app.kubernetes.io/part-of: opentelemetry-operator
-    app.kubernetes.io/version: 0.137.0
-    helm.sh/chart: opentelemetry-operator-0.98.0
+    app.kubernetes.io/version: 0.136.0
+    helm.sh/chart: opentelemetry-operator-0.97.0
   name: opentelemetry-operator-leader-election
-  namespace: opentelemetry-operator-dev
+  namespace: opentelemetry-operator-uat
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
@@ -17141,7 +17116,7 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: opentelemetry-operator
-    namespace: opentelemetry-operator-dev
+    namespace: opentelemetry-operator-uat
 ---
 apiVersion: v1
 kind: Service
@@ -17152,10 +17127,10 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: opentelemetry-operator
     app.kubernetes.io/part-of: opentelemetry-operator
-    app.kubernetes.io/version: 0.137.0
-    helm.sh/chart: opentelemetry-operator-0.98.0
+    app.kubernetes.io/version: 0.136.0
+    helm.sh/chart: opentelemetry-operator-0.97.0
   name: opentelemetry-operator
-  namespace: opentelemetry-operator-dev
+  namespace: opentelemetry-operator-uat
 spec:
   ports:
     - name: https
@@ -17179,10 +17154,10 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: opentelemetry-operator
     app.kubernetes.io/part-of: opentelemetry-operator
-    app.kubernetes.io/version: 0.137.0
-    helm.sh/chart: opentelemetry-operator-0.98.0
+    app.kubernetes.io/version: 0.136.0
+    helm.sh/chart: opentelemetry-operator-0.97.0
   name: opentelemetry-operator-webhook
-  namespace: opentelemetry-operator-dev
+  namespace: opentelemetry-operator-uat
 spec:
   ports:
     - port: 443
@@ -17201,12 +17176,12 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: opentelemetry-operator
     app.kubernetes.io/part-of: opentelemetry-operator
-    app.kubernetes.io/version: 0.137.0
-    helm.sh/chart: opentelemetry-operator-0.98.0
+    app.kubernetes.io/version: 0.136.0
+    helm.sh/chart: opentelemetry-operator-0.97.0
   name: opentelemetry-operator
-  namespace: opentelemetry-operator-dev
+  namespace: opentelemetry-operator-uat
 spec:
-  replicas: 2
+  replicas: 1
   revisionHistoryLimit: 10
   selector:
     matchLabels:
@@ -17222,8 +17197,8 @@ spec:
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/name: opentelemetry-operator
         app.kubernetes.io/part-of: opentelemetry-operator
-        app.kubernetes.io/version: 0.137.0
-        helm.sh/chart: opentelemetry-operator-0.98.0
+        app.kubernetes.io/version: 0.136.0
+        helm.sh/chart: opentelemetry-operator-0.97.0
     spec:
       automountServiceAccountToken: true
       containers:
@@ -17232,7 +17207,7 @@ spec:
             - --enable-leader-election
             - --health-probe-addr=:8081
             - --webhook-port=9443
-            - --collector-image=ghcr.io/open-telemetry/opentelemetry-collector-releases/opentelemetry-collector-k8s:0.137.0
+            - --collector-image=ghcr.io/open-telemetry/opentelemetry-collector-releases/opentelemetry-collector-k8s:0.136.0
           command:
             - /manager
           env:
@@ -17242,7 +17217,7 @@ spec:
                   fieldPath: spec.serviceAccountName
             - name: ENABLE_WEBHOOKS
               value: "true"
-          image: ghcr.io/open-telemetry/opentelemetry-operator/opentelemetry-operator:0.137.0
+          image: ghcr.io/open-telemetry/opentelemetry-operator/opentelemetry-operator:0.136.0
           imagePullPolicy: IfNotPresent
           livenessProbe:
             httpGet:
@@ -17320,14 +17295,14 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: opentelemetry-operator
     app.kubernetes.io/part-of: opentelemetry-operator
-    app.kubernetes.io/version: 0.137.0
-    helm.sh/chart: opentelemetry-operator-0.98.0
+    app.kubernetes.io/version: 0.136.0
+    helm.sh/chart: opentelemetry-operator-0.97.0
   name: opentelemetry-operator-serving-cert
-  namespace: opentelemetry-operator-dev
+  namespace: opentelemetry-operator-uat
 spec:
   dnsNames:
-    - opentelemetry-operator-webhook.opentelemetry-operator-dev.svc
-    - opentelemetry-operator-webhook.opentelemetry-operator-dev.svc.cluster.local
+    - opentelemetry-operator-webhook.opentelemetry-operator-uat.svc
+    - opentelemetry-operator-webhook.opentelemetry-operator-uat.svc.cluster.local
   issuerRef:
     kind: Issuer
     name: opentelemetry-operator-selfsigned-issuer
@@ -17345,10 +17320,10 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: opentelemetry-operator
     app.kubernetes.io/part-of: opentelemetry-operator
-    app.kubernetes.io/version: 0.137.0
-    helm.sh/chart: opentelemetry-operator-0.98.0
+    app.kubernetes.io/version: 0.136.0
+    helm.sh/chart: opentelemetry-operator-0.97.0
   name: opentelemetry-operator-selfsigned-issuer
-  namespace: opentelemetry-operator-dev
+  namespace: opentelemetry-operator-uat
 spec:
   selfSigned: {}
 ---
@@ -17356,15 +17331,15 @@ apiVersion: admissionregistration.k8s.io/v1
 kind: MutatingWebhookConfiguration
 metadata:
   annotations:
-    cert-manager.io/inject-ca-from: opentelemetry-operator-dev/opentelemetry-operator-serving-cert
+    cert-manager.io/inject-ca-from: opentelemetry-operator-uat/opentelemetry-operator-serving-cert
   labels:
     app.kubernetes.io/component: webhook
     app.kubernetes.io/instance: opentelemetry-operator
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: opentelemetry-operator
     app.kubernetes.io/part-of: opentelemetry-operator
-    app.kubernetes.io/version: 0.137.0
-    helm.sh/chart: opentelemetry-operator-0.98.0
+    app.kubernetes.io/version: 0.136.0
+    helm.sh/chart: opentelemetry-operator-0.97.0
   name: opentelemetry-operator-mutation
 webhooks:
   - admissionReviewVersions:
@@ -17372,7 +17347,7 @@ webhooks:
     clientConfig:
       service:
         name: opentelemetry-operator-webhook
-        namespace: opentelemetry-operator-dev
+        namespace: opentelemetry-operator-uat
         path: /mutate-opentelemetry-io-v1alpha1-instrumentation
         port: 443
     failurePolicy: Fail
@@ -17395,7 +17370,7 @@ webhooks:
     clientConfig:
       service:
         name: opentelemetry-operator-webhook
-        namespace: opentelemetry-operator-dev
+        namespace: opentelemetry-operator-uat
         path: /mutate-opentelemetry-io-v1beta1-opentelemetrycollector
         port: 443
     failurePolicy: Fail
@@ -17418,7 +17393,7 @@ webhooks:
     clientConfig:
       service:
         name: opentelemetry-operator-webhook
-        namespace: opentelemetry-operator-dev
+        namespace: opentelemetry-operator-uat
         path: /mutate-v1-pod
         port: 443
     failurePolicy: Ignore
@@ -17440,15 +17415,15 @@ apiVersion: admissionregistration.k8s.io/v1
 kind: ValidatingWebhookConfiguration
 metadata:
   annotations:
-    cert-manager.io/inject-ca-from: opentelemetry-operator-dev/opentelemetry-operator-serving-cert
+    cert-manager.io/inject-ca-from: opentelemetry-operator-uat/opentelemetry-operator-serving-cert
   labels:
     app.kubernetes.io/component: webhook
     app.kubernetes.io/instance: opentelemetry-operator
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: opentelemetry-operator
     app.kubernetes.io/part-of: opentelemetry-operator
-    app.kubernetes.io/version: 0.137.0
-    helm.sh/chart: opentelemetry-operator-0.98.0
+    app.kubernetes.io/version: 0.136.0
+    helm.sh/chart: opentelemetry-operator-0.97.0
   name: opentelemetry-operator-validation
 webhooks:
   - admissionReviewVersions:
@@ -17456,7 +17431,7 @@ webhooks:
     clientConfig:
       service:
         name: opentelemetry-operator-webhook
-        namespace: opentelemetry-operator-dev
+        namespace: opentelemetry-operator-uat
         path: /validate-opentelemetry-io-v1alpha1-instrumentation
         port: 443
     failurePolicy: Fail
@@ -17479,7 +17454,7 @@ webhooks:
     clientConfig:
       service:
         name: opentelemetry-operator-webhook
-        namespace: opentelemetry-operator-dev
+        namespace: opentelemetry-operator-uat
         path: /validate-opentelemetry-io-v1alpha1-instrumentation
         port: 443
     failurePolicy: Ignore
@@ -17501,7 +17476,7 @@ webhooks:
     clientConfig:
       service:
         name: opentelemetry-operator-webhook
-        namespace: opentelemetry-operator-dev
+        namespace: opentelemetry-operator-uat
         path: /validate-opentelemetry-io-v1beta1-opentelemetrycollector
         port: 443
     failurePolicy: Fail
@@ -17524,7 +17499,7 @@ webhooks:
     clientConfig:
       service:
         name: opentelemetry-operator-webhook
-        namespace: opentelemetry-operator-dev
+        namespace: opentelemetry-operator-uat
         path: /validate-opentelemetry-io-v1beta1-opentelemetrycollector
         port: 443
     failurePolicy: Ignore
@@ -17553,10 +17528,10 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: opentelemetry-operator
     app.kubernetes.io/part-of: opentelemetry-operator
-    app.kubernetes.io/version: 0.137.0
-    helm.sh/chart: opentelemetry-operator-0.98.0
+    app.kubernetes.io/version: 0.136.0
+    helm.sh/chart: opentelemetry-operator-0.97.0
   name: opentelemetry-operator-cert-manager
-  namespace: opentelemetry-operator-dev
+  namespace: opentelemetry-operator-uat
 spec:
   containers:
     - command:
@@ -17603,10 +17578,10 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: opentelemetry-operator
     app.kubernetes.io/part-of: opentelemetry-operator
-    app.kubernetes.io/version: 0.137.0
-    helm.sh/chart: opentelemetry-operator-0.98.0
+    app.kubernetes.io/version: 0.136.0
+    helm.sh/chart: opentelemetry-operator-0.97.0
   name: opentelemetry-operator-metrics
-  namespace: opentelemetry-operator-dev
+  namespace: opentelemetry-operator-uat
 spec:
   containers:
     - command:
@@ -17653,10 +17628,10 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: opentelemetry-operator
     app.kubernetes.io/part-of: opentelemetry-operator
-    app.kubernetes.io/version: 0.137.0
-    helm.sh/chart: opentelemetry-operator-0.98.0
+    app.kubernetes.io/version: 0.136.0
+    helm.sh/chart: opentelemetry-operator-0.97.0
   name: opentelemetry-operator-webhook
-  namespace: opentelemetry-operator-dev
+  namespace: opentelemetry-operator-uat
 spec:
   containers:
     - command:

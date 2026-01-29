@@ -1,7 +1,7 @@
 {
   "repoURL": "https://github.com/paoloyx/helmfile-test-kargo",
-  "drySha": "6579a133045353a4c8a42d546f7fdafb971ae909",
+  "drySha": "8abd00ffb2a59f5c628258e552a8bc35f3a8f174",
   "author": "Paolo Filippelli <paolo.filippelli@wolterskluwer.com>",
-  "date": "2026-01-29T15:39:50Z",
-  "subject": "prod replicas to 4"
+  "date": "2026-01-29T16:25:31Z",
+  "subject": "Argo parameters override"
 }
