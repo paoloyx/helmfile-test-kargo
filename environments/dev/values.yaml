@@ -1,5 +1,5 @@
 openTelemetryOperator:
-  fullnameOverride: "otel-operator-ciccio"
+  fullnameOverride: "otel-operator-pallino"
   version: "0.98.0"
   replicas: 4
 namespace:
