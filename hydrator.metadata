@@ -1,7 +1,7 @@
 {
   "repoURL": "https://github.com/paoloyx/helmfile-test-kargo",
-  "drySha": "36b7eeb1bf83b724b17b40fc0ca560e68f2375a1",
+  "drySha": "e71a8e10cc5234cd0789988eb7d3c9eb7648c82e",
   "author": "Paolo Filippelli <paolo.filippelli@wolterskluwer.com>",
-  "date": "2026-01-30T10:56:23Z",
+  "date": "2026-02-02T13:26:54Z",
   "subject": "dev replicas to 3"
 }
