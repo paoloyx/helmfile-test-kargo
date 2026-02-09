@@ -1,7 +1,7 @@
 {
   "repoURL": "https://github.com/paoloyx/helmfile-test-kargo",
-  "drySha": "66868b02282890dc2923285f788549750a26cba8",
+  "drySha": "a4e2a0348189dbb3c7c5a41f4d3d6d1204d81a38",
   "author": "Paolo Filippelli <paolo.filippelli@wolterskluwer.com>",
-  "date": "2026-02-02T14:50:07Z",
+  "date": "2026-02-09T16:52:09Z",
   "subject": "namespace name change again"
 }
