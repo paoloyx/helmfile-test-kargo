@@ -1,6 +1,6 @@
 openTelemetryOperator:
-  fullnameOverride: "otel-operator-cambionome"
-  version: "0.98.0"
-  replicas: 2
+  fullnameOverride: "otel-operator-altronome" #otel-operator-altronome
+  version: "0.144.0" #0.144.0
+  replicas: 3 #4
 namespace:
   name: opentelemetry-operator-test-dev-again
