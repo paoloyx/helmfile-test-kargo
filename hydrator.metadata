@@ -1,7 +1,7 @@
 {
   "repoURL": "https://github.com/paoloyx/helmfile-test-kargo",
-  "drySha": "8ad7c0f1e1adf4d60089c8ccf905ec3cd075b8c5",
+  "drySha": "6c16bed8fff256e0cd3b6b4744e1e157962bdab1",
   "author": "Paolo Filippelli <paolo.filippelli@wolterskluwer.com>",
-  "date": "2026-02-09T16:58:47Z",
+  "date": "2026-02-10T10:21:56Z",
   "subject": "fullnameoverride"
 }
