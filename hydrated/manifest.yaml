@@ -5227,7 +5227,7 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
-    cert-manager.io/inject-ca-from: opentelemetry-operator-dev/otel-operator-cambionome-serving-cert
+    cert-manager.io/inject-ca-from: opentelemetry-operator-dev/otel-operator-altronome-serving-cert
     controller-gen.kubebuilder.io/version: v0.19.0
   creationTimestamp: null
   labels:
@@ -5239,7 +5239,7 @@ spec:
     webhook:
       clientConfig:
         service:
-          name: otel-operator-cambionome-webhook
+          name: otel-operator-altronome-webhook
           namespace: opentelemetry-operator-dev
           path: /convert
           port: 443
@@ -16502,7 +16502,7 @@ metadata:
     app.kubernetes.io/part-of: opentelemetry-operator
     app.kubernetes.io/version: 0.137.0
     helm.sh/chart: opentelemetry-operator-0.98.0
-  name: otel-operator-cambionome-manager
+  name: otel-operator-altronome-manager
 rules:
   - apiGroups:
       - ""
@@ -16855,7 +16855,7 @@ metadata:
     app.kubernetes.io/part-of: opentelemetry-operator
     app.kubernetes.io/version: 0.137.0
     helm.sh/chart: opentelemetry-operator-0.98.0
-  name: otel-operator-cambionome-metrics
+  name: otel-operator-altronome-metrics
 rules:
   - nonResourceURLs:
       - /metrics
@@ -16873,7 +16873,7 @@ metadata:
     app.kubernetes.io/part-of: opentelemetry-operator
     app.kubernetes.io/version: 0.137.0
     helm.sh/chart: opentelemetry-operator-0.98.0
-  name: otel-operator-cambionome-proxy
+  name: otel-operator-altronome-proxy
 rules:
   - apiGroups:
       - authentication.k8s.io
@@ -16893,11 +16893,11 @@ metadata:
     app.kubernetes.io/part-of: opentelemetry-operator
     app.kubernetes.io/version: 0.137.0
     helm.sh/chart: opentelemetry-operator-0.98.0
-  name: otel-operator-cambionome-manager
+  name: otel-operator-altronome-manager
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: otel-operator-cambionome-manager
+  name: otel-operator-altronome-manager
 subjects:
   - kind: ServiceAccount
     name: opentelemetry-operator
@@ -16914,11 +16914,11 @@ metadata:
     app.kubernetes.io/part-of: opentelemetry-operator
     app.kubernetes.io/version: 0.137.0
     helm.sh/chart: opentelemetry-operator-0.98.0
-  name: otel-operator-cambionome-proxy
+  name: otel-operator-altronome-proxy
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: otel-operator-cambionome-proxy
+  name: otel-operator-altronome-proxy
 subjects:
   - kind: ServiceAccount
     name: opentelemetry-operator
@@ -16935,7 +16935,7 @@ metadata:
     app.kubernetes.io/part-of: opentelemetry-operator
     app.kubernetes.io/version: 0.137.0
     helm.sh/chart: opentelemetry-operator-0.98.0
-  name: otel-operator-cambionome-leader-election
+  name: otel-operator-altronome-leader-election
   namespace: opentelemetry-operator-dev
 rules:
   - apiGroups:
@@ -17132,12 +17132,12 @@ metadata:
     app.kubernetes.io/part-of: opentelemetry-operator
     app.kubernetes.io/version: 0.137.0
     helm.sh/chart: opentelemetry-operator-0.98.0
-  name: otel-operator-cambionome-leader-election
+  name: otel-operator-altronome-leader-election
   namespace: opentelemetry-operator-dev
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
-  name: otel-operator-cambionome-leader-election
+  name: otel-operator-altronome-leader-election
 subjects:
   - kind: ServiceAccount
     name: opentelemetry-operator
@@ -17154,7 +17154,7 @@ metadata:
     app.kubernetes.io/part-of: opentelemetry-operator
     app.kubernetes.io/version: 0.137.0
     helm.sh/chart: opentelemetry-operator-0.98.0
-  name: otel-operator-cambionome
+  name: otel-operator-altronome
   namespace: opentelemetry-operator-dev
 spec:
   ports:
@@ -17181,7 +17181,7 @@ metadata:
     app.kubernetes.io/part-of: opentelemetry-operator
     app.kubernetes.io/version: 0.137.0
     helm.sh/chart: opentelemetry-operator-0.98.0
-  name: otel-operator-cambionome-webhook
+  name: otel-operator-altronome-webhook
   namespace: opentelemetry-operator-dev
 spec:
   ports:
@@ -17203,10 +17203,10 @@ metadata:
     app.kubernetes.io/part-of: opentelemetry-operator
     app.kubernetes.io/version: 0.137.0
     helm.sh/chart: opentelemetry-operator-0.98.0
-  name: otel-operator-cambionome
+  name: otel-operator-altronome
   namespace: opentelemetry-operator-dev
 spec:
-  replicas: 2
+  replicas: 4
   revisionHistoryLimit: 10
   selector:
     matchLabels:
@@ -17309,7 +17309,7 @@ spec:
         - name: cert
           secret:
             defaultMode: 420
-            secretName: otel-operator-cambionome-controller-manager-service-cert
+            secretName: otel-operator-altronome-controller-manager-service-cert
 ---
 apiVersion: cert-manager.io/v1
 kind: Certificate
@@ -17322,19 +17322,19 @@ metadata:
     app.kubernetes.io/part-of: opentelemetry-operator
     app.kubernetes.io/version: 0.137.0
     helm.sh/chart: opentelemetry-operator-0.98.0
-  name: otel-operator-cambionome-serving-cert
+  name: otel-operator-altronome-serving-cert
   namespace: opentelemetry-operator-dev
 spec:
   dnsNames:
-    - otel-operator-cambionome-webhook.opentelemetry-operator-dev.svc
-    - otel-operator-cambionome-webhook.opentelemetry-operator-dev.svc.cluster.local
+    - otel-operator-altronome-webhook.opentelemetry-operator-dev.svc
+    - otel-operator-altronome-webhook.opentelemetry-operator-dev.svc.cluster.local
   issuerRef:
     kind: Issuer
-    name: otel-operator-cambionome-selfsigned-issuer
-  secretName: otel-operator-cambionome-controller-manager-service-cert
+    name: otel-operator-altronome-selfsigned-issuer
+  secretName: otel-operator-altronome-controller-manager-service-cert
   subject:
     organizationalUnits:
-      - otel-operator-cambionome
+      - otel-operator-altronome
 ---
 apiVersion: cert-manager.io/v1
 kind: Issuer
@@ -17347,7 +17347,7 @@ metadata:
     app.kubernetes.io/part-of: opentelemetry-operator
     app.kubernetes.io/version: 0.137.0
     helm.sh/chart: opentelemetry-operator-0.98.0
-  name: otel-operator-cambionome-selfsigned-issuer
+  name: otel-operator-altronome-selfsigned-issuer
   namespace: opentelemetry-operator-dev
 spec:
   selfSigned: {}
@@ -17356,7 +17356,7 @@ apiVersion: admissionregistration.k8s.io/v1
 kind: MutatingWebhookConfiguration
 metadata:
   annotations:
-    cert-manager.io/inject-ca-from: opentelemetry-operator-dev/otel-operator-cambionome-serving-cert
+    cert-manager.io/inject-ca-from: opentelemetry-operator-dev/otel-operator-altronome-serving-cert
   labels:
     app.kubernetes.io/component: webhook
     app.kubernetes.io/instance: opentelemetry-operator
@@ -17365,13 +17365,13 @@ metadata:
     app.kubernetes.io/part-of: opentelemetry-operator
     app.kubernetes.io/version: 0.137.0
     helm.sh/chart: opentelemetry-operator-0.98.0
-  name: otel-operator-cambionome-mutation
+  name: otel-operator-altronome-mutation
 webhooks:
   - admissionReviewVersions:
       - v1
     clientConfig:
       service:
-        name: otel-operator-cambionome-webhook
+        name: otel-operator-altronome-webhook
         namespace: opentelemetry-operator-dev
         path: /mutate-opentelemetry-io-v1alpha1-instrumentation
         port: 443
@@ -17394,7 +17394,7 @@ webhooks:
       - v1
     clientConfig:
       service:
-        name: otel-operator-cambionome-webhook
+        name: otel-operator-altronome-webhook
         namespace: opentelemetry-operator-dev
         path: /mutate-opentelemetry-io-v1beta1-opentelemetrycollector
         port: 443
@@ -17417,7 +17417,7 @@ webhooks:
       - v1
     clientConfig:
       service:
-        name: otel-operator-cambionome-webhook
+        name: otel-operator-altronome-webhook
         namespace: opentelemetry-operator-dev
         path: /mutate-v1-pod
         port: 443
@@ -17440,7 +17440,7 @@ apiVersion: admissionregistration.k8s.io/v1
 kind: ValidatingWebhookConfiguration
 metadata:
   annotations:
-    cert-manager.io/inject-ca-from: opentelemetry-operator-dev/otel-operator-cambionome-serving-cert
+    cert-manager.io/inject-ca-from: opentelemetry-operator-dev/otel-operator-altronome-serving-cert
   labels:
     app.kubernetes.io/component: webhook
     app.kubernetes.io/instance: opentelemetry-operator
@@ -17449,13 +17449,13 @@ metadata:
     app.kubernetes.io/part-of: opentelemetry-operator
     app.kubernetes.io/version: 0.137.0
     helm.sh/chart: opentelemetry-operator-0.98.0
-  name: otel-operator-cambionome-validation
+  name: otel-operator-altronome-validation
 webhooks:
   - admissionReviewVersions:
       - v1
     clientConfig:
       service:
-        name: otel-operator-cambionome-webhook
+        name: otel-operator-altronome-webhook
         namespace: opentelemetry-operator-dev
         path: /validate-opentelemetry-io-v1alpha1-instrumentation
         port: 443
@@ -17478,7 +17478,7 @@ webhooks:
       - v1
     clientConfig:
       service:
-        name: otel-operator-cambionome-webhook
+        name: otel-operator-altronome-webhook
         namespace: opentelemetry-operator-dev
         path: /validate-opentelemetry-io-v1alpha1-instrumentation
         port: 443
@@ -17500,7 +17500,7 @@ webhooks:
       - v1
     clientConfig:
       service:
-        name: otel-operator-cambionome-webhook
+        name: otel-operator-altronome-webhook
         namespace: opentelemetry-operator-dev
         path: /validate-opentelemetry-io-v1beta1-opentelemetrycollector
         port: 443
@@ -17523,7 +17523,7 @@ webhooks:
       - v1
     clientConfig:
       service:
-        name: otel-operator-cambionome-webhook
+        name: otel-operator-altronome-webhook
         namespace: opentelemetry-operator-dev
         path: /validate-opentelemetry-io-v1beta1-opentelemetrycollector
         port: 443
@@ -17555,7 +17555,7 @@ metadata:
     app.kubernetes.io/part-of: opentelemetry-operator
     app.kubernetes.io/version: 0.137.0
     helm.sh/chart: opentelemetry-operator-0.98.0
-  name: otel-operator-cambionome-cert-manager
+  name: otel-operator-altronome-cert-manager
   namespace: opentelemetry-operator-dev
 spec:
   containers:
@@ -17605,7 +17605,7 @@ metadata:
     app.kubernetes.io/part-of: opentelemetry-operator
     app.kubernetes.io/version: 0.137.0
     helm.sh/chart: opentelemetry-operator-0.98.0
-  name: otel-operator-cambionome-metrics
+  name: otel-operator-altronome-metrics
   namespace: opentelemetry-operator-dev
 spec:
   containers:
@@ -17620,7 +17620,7 @@ spec:
           fi
       env:
         - name: MANAGER_METRICS_SERVICE_CLUSTERIP
-          value: otel-operator-cambionome
+          value: otel-operator-altronome
         - name: MANAGER_METRICS_SERVICE_PORT
           value: "8443"
       image: busybox:latest
@@ -17655,7 +17655,7 @@ metadata:
     app.kubernetes.io/part-of: opentelemetry-operator
     app.kubernetes.io/version: 0.137.0
     helm.sh/chart: opentelemetry-operator-0.98.0
-  name: otel-operator-cambionome-webhook
+  name: otel-operator-altronome-webhook
   namespace: opentelemetry-operator-dev
 spec:
   containers:
@@ -17670,7 +17670,7 @@ spec:
           fi
       env:
         - name: WEBHOOK_SERVICE_CLUSTERIP
-          value: otel-operator-cambionome-webhook
+          value: otel-operator-altronome-webhook
         - name: WEBHOOK_SERVICE_PORT
           value: "443"
       image: busybox:latest
